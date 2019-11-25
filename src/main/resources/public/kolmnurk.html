@@ -1,0 +1,33 @@
+<doctype html>
+  <html>
+    <head>
+      <title>Korrutamine</title>
+      <script>
+      let xhr=new XMLHttpRequest();
+      xhr.onreadystatechange=kuvaVastus;
+      function arvutamine(){
+        let p2ring ="side1="+document.getElementById("side1").value+
+          "&side2="+document.getElementById("side2").value+
+          "&degrees="+document.getElementById("degrees").value;
+        xhr.open("GET", "triangle?"+p2ring, true);
+        xhr.send(true);
+
+      }
+      function kuvaVastus(){
+        if (xhr.readyState==4){
+          document.getElementById("vastus").innerHTML=xhr.responseText;
+        }
+
+      }
+    </script>
+    </head>
+    <body>
+      <img src="17.gif" /><br/>
+      <input type="number" placeholder=" AC pikkus" id="side1"/>
+      <input type="number" placeholder="CB pikkus" id="side2"/>
+      <input type="number" placeholder="C nurk" id="degrees"/>
+      <input type="button" value="Arvuta" onclick="arvutamine()"/>
+      <span> AC on :</span><div id="vastus"></div>
+
+    </body>
+  </html>
